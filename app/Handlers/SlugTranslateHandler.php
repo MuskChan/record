@@ -70,6 +70,7 @@ class SlugTranslateHandler
 
     public function pinyin($text)
     {
+        $text = substr($text,0,254);
         return str_slug(app(Pinyin::class)->permalink($text));
     }
 }

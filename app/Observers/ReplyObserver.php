@@ -9,11 +9,14 @@ use App\Models\Reply;
 
 use App\Notifications\TopicReplied;
 
+//观察器
 class ReplyObserver
 {
     public function created(Reply $reply)
     {
         $reply->topic->updateReplyCount();
+//        var_dump($reply->topic->updateReplyCount());
+//        exit;
         // 通知话题作者有新的评论
         $reply->topic->user->notify(new TopicReplied($reply));
     }
